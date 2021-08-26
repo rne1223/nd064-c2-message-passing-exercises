@@ -94,11 +94,6 @@ install_argocd() {
     echo "ArgoCD Password: $(eval $ARGOCD_PASSWORD)"
 }
 
-install_dos2unix() {
-    step "===== installing dos2unix ====="
-    sudo zypper install -y dos2unix 
-}
-
 install_yamllint() {
     step "===== installing dos2unix ====="
     sudo pip3 install yamllint
@@ -126,6 +121,7 @@ main() {
     install_gh
     install_helm
     install_argocd
+    install_yamllint
     modify_bashrc
 
     echo ==========
