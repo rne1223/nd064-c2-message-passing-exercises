@@ -1,19 +1,7 @@
-from .enums import Status
+from enums import Status
 
 
-def create_order(order_data):
-    """
-    This is a stubbed method of retrieving a resource. It doesn't actually do anything.
-    """
-    # Do something to create the resource
-    return order_data
-
-
-def retrieve_orders():
-    """
-    This is a stubbed method of retrieving multiple resources. It doesn't actually do anything.
-    """
-    return [
+orders = [
         {
             "id": "1",
             "status": Status.Queued.value,
@@ -33,3 +21,18 @@ def retrieve_orders():
             ]
         }
     ]
+
+
+def create_order(order_data):
+    """
+    This is a stubbed method of retrieving a resource. It doesn't actually do anything.
+    """
+    # Do something to create the resource
+    return order_data
+
+
+def retrieve_orders():
+    """
+    This is a stubbed method of retrieving multiple resources. It doesn't actually do anything.
+    """
+    return orders
