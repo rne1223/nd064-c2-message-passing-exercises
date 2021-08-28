@@ -27,5 +27,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
 
   	# st the static IP for the vagrant box
-  	config.vm.network "private_network", ip: "192.168.50.4"
+  	config.vm.network "private_network", ip: "192.168.50.5"
 end
