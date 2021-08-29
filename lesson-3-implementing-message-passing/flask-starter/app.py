@@ -8,7 +8,7 @@ from pprint import pprint
 from services import retrieve_orders, create_order
 
 app = Flask(__name__)
-
+app.config['ID'] = 3
 
 @app.route('/')
 def main_page():
@@ -26,13 +26,25 @@ def getOrders():
 @app.route('/neworder', methods=('GET', 'POST'))
 def neworder():
 
-    response = '' 
+    mock_order = {
+        "id": app.config['ID'],
+        "created_at": "2020-10-16T10:29:10.969696",
+        "created_by": "USER15",
+        "equipment": [
+            "KEYBOARD", "WEBCAM"
+        ]
+    }
+
+    app.config['ID'] += 1
+    msg = create_order(mock_order)
+
+    # response = '' 
 
     # if request.method == 'POST':
     #     response = json.dumps({"data": request.data})
 
-    pprint(request.values)
-    return "hi " ,200
+    # pprint(request.values)
+    return msg ,200
 
     #     content = request.form['content']
 
