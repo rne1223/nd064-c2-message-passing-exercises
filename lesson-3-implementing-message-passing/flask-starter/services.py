@@ -1,6 +1,5 @@
 from enums import Status
-
-
+id = 3
 orders = [
         {
             "id": "1",
@@ -27,12 +26,15 @@ def create_order(order_data):
     """
     This is a stubbed method of retrieving a resource. It doesn't actually do anything.
     """
-    msg = "order in the system"
 
-    # Do something to create the resource
+    global id 
+    order_data["id"] = id
     order_data["status"] = Status.Queued.value
     orders.append(order_data)
 
+    id += 1
+
+    msg = "order in the system"
     return msg 
 
 
