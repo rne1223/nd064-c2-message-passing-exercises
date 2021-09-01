@@ -40,7 +40,7 @@ def neworder():
 
     msg = create_order(order)
 
-    return msg ,200
+    return msg ,201
 
 
 if __name__ == '__main__':
