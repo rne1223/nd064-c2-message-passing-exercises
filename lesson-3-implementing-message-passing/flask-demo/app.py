@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify, Response, json
 
-from .services import retrieve_pet, create_pet, retrieve_item
+# from services import retrieve_pet, create_pet, retrieve_item, create_item
+from services import retrieve_item, create_item
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return jsonify('Hello World!')
 
 @app.route('/demo/<path_demo>', methods=['POST'])
 def demo(path_demo=None):
@@ -37,4 +38,4 @@ def pets(item_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0', port=5000)

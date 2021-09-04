@@ -1,4 +1,11 @@
-from enums import Status
+import sys
+
+# Running 'flask run'
+if "run" in sys.argv:
+    from .enums import Status
+else: # Running 'python app.py'
+    from enums import Status
+
 id = 3
 orders = [
         {

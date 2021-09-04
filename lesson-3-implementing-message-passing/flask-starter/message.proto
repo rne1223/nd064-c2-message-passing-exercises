@@ -8,6 +8,6 @@ message Item {
   float weight = 4;
 }
 
-Service ItemService {
-    rpc Create(ItemMessage) returns (ItemMessage)
-}
+// service ItemService {
+//     rpc Create(ItemMessage) returns (ItemMessage);
+// }
