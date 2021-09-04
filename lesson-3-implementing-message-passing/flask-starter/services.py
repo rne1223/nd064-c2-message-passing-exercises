@@ -35,14 +35,13 @@ def create_order(order_data):
     """
 
     global id 
-    order_data["id"] = id
-    order_data["status"] = Status.Queued.value
+    order_data["order_id"] = id
+    order_data["status"] = Status.Completed.value
     orders.append(order_data)
 
     id += 1
 
-    msg = "order in the system"
-    return msg 
+    return order_data 
 
 
 def retrieve_orders():
