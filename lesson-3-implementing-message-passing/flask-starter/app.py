@@ -29,20 +29,22 @@ def neworder():
 
     data = request.values
     
-    # print(data["equipment"])
-    # user = data["username"]
-    # equipment = data["equipment"]
-    # timestamp = datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')
+    created_by = data["created_by"]
+    status = data["status"]
+    created_at = datetime.fromtimestamp(int(data["created_at"])).isoformat() 
+    equipment =  data["equipment"]
 
-    # order = {
-    #     "created_at": timestamp,
-    #     "created_by": user,
-    #     "equipment": equipment 
-    # }
 
-    # msg = create_order(order)
+    order = {
+        "created_at": created_at,
+        "created_by": created_by,
+        "status": status,
+        "equipment": equipment 
+    }
 
-    return jsonify(data) 
+    msg = create_order(order)
+
+    return jsonify(msg) 
 
 
 if __name__ == '__main__':
