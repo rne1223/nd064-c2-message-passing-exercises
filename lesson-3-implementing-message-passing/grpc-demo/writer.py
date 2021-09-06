@@ -1,6 +1,8 @@
 import grpc
 import item_pb2
 import item_pb2_grpc
+import item2_pb2
+import item2_pb2_grpc
 
 """
 Sample implementation of a writer that can be used to write messages to gRPC.
@@ -9,12 +11,24 @@ Sample implementation of a writer that can be used to write messages to gRPC.
 print("Sending sample payload...")
 
 channel = grpc.insecure_channel("localhost:5005")
-stub = item_pb2_grpc.ItemServiceStub(channel)
+## For item.proto
+# stub = item_pb2_grpc.ItemServiceStub(channel)
+
+# # Update this with desired payload
+# item = item_pb2.ItemMessage(
+#     name="Non-Stick Frying Pan",
+#     brand_name="Fruit Cup",
+#     id=4,
+#     weight=4.5
+# )
+
+## For item2.proto
+stub = item2_pb2_grpc.OrderServiceStub(channel)
 
 # Update this with desired payload
-item = item_pb2.ItemMessage(
+item = item2_pb2.OrderMessage(
     name="Non-Stick Frying Pan",
-    brand_name=10,
+    brand_name="Fruit Cup",
     id=4,
     weight=4.5
 )
