@@ -28,23 +28,32 @@ import grpc
 ## For item2.proto
 import item2_pb2
 import item2_pb2_grpc
-class ItemServicer(item2_pb2_grpc.OrderServiceServicer):
+class OrderServicer(item2_pb2_grpc.OrderServiceServicer):
     def Create(self, request, context):
 
         request_value = {
-            "name": request.name,
-            "brand_name": request.brand_name,
-            "id": int(request.id),
-            "weight": request.weight,
+             "id":request.id,
+            "created_by":request.created_by,
+            "status" : request.status,
+            "created_at": request.created_at,
+            "equipment" : request.equipment
         }
         print(request_value)
+    
+        # item2_pb2.OrderMessageList(item2_pb2.OrderMessage(**request_value))
+        return item2_pb2.OrderMessage(**request_value)
 
-        return item2_pb2.ItemMessage(**request_value)
+    def Get(self):
+        print("hello world")
+        return item2_pb2.OrderMessage
+
+
 
 
 # Initialize gRPC server
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
-item2_pb2_grpc.add_ItemServiceServicer_to_server(ItemServicer(), server)
+# item2_pb2_grpc.add_OrderServiceServicer_to_server(ItemServicer(), server)
+item2_pb2_grpc.add_OrderServiceServicer_to_server(OrderServicer(), server)
 
 
 print("Server starting on port 5005...")

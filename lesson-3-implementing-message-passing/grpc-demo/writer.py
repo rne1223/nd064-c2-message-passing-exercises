@@ -1,6 +1,6 @@
 import grpc
-import item_pb2
-import item_pb2_grpc
+# import item_pb2
+# import item_pb2_grpc
 import item2_pb2
 import item2_pb2_grpc
 
@@ -29,10 +29,9 @@ stub = item2_pb2_grpc.OrderServiceStub(channel)
 item = item2_pb2.OrderMessage(
     id="RT",
     created_by="Fool",
-    status=item2_pb2.OrderMessage.Status.QUEUE,
+    status=item2_pb2.OrderMessage.Status.QUEUED,
     created_at="10:00pm",
-    equipment=
+    equipment=[item2_pb2.OrderMessage.Equipment.MOUSE, item2_pb2.OrderMessage.Equipment.MONITOR]
 )
-
 
 response = stub.Create(item)
