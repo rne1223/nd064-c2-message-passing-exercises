@@ -27,10 +27,11 @@ stub = item2_pb2_grpc.OrderServiceStub(channel)
 
 # Update this with desired payload
 item = item2_pb2.OrderMessage(
-    name="Non-Stick Frying Pan",
-    brand_name="Fruit Cup",
-    id=4,
-    weight=4.5
+    id="RT",
+    created_by="Fool",
+    status=item2_pb2.OrderMessage.Status.QUEUE,
+    created_at="10:00pm",
+    equipment=
 )
 
 

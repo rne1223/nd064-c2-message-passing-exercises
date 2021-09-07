@@ -2,12 +2,11 @@ import time
 from concurrent import futures
 
 import grpc
-import item_pb2
-import item_pb2_grpc
-import item2_pb2
-import item2_pb2_grpc
 
 ## For item.proto
+# import item_pb2
+# import item_pb2_grpc
+
 # class ItemServicer(item_pb2_grpc.ItemServiceServicer):
 #     def Create(self, request, context):
 
@@ -27,6 +26,8 @@ import item2_pb2_grpc
 # item_pb2_grpc.add_ItemServiceServicer_to_server(ItemServicer(), server)
 
 ## For item2.proto
+import item2_pb2
+import item2_pb2_grpc
 class ItemServicer(item2_pb2_grpc.OrderServiceServicer):
     def Create(self, request, context):
 
@@ -38,12 +39,12 @@ class ItemServicer(item2_pb2_grpc.OrderServiceServicer):
         }
         print(request_value)
 
-        return item_pb2.ItemMessage(**request_value)
+        return item2_pb2.ItemMessage(**request_value)
 
 
 # Initialize gRPC server
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
-item_pb2_grpc.add_ItemServiceServicer_to_server(ItemServicer(), server)
+item2_pb2_grpc.add_ItemServiceServicer_to_server(ItemServicer(), server)
 
 
 print("Server starting on port 5005...")
