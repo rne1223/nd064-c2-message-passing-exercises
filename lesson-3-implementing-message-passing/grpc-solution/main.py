@@ -7,7 +7,9 @@ import order_pb2_grpc
 
 
 class OrderServicer(order_pb2_grpc.OrderServiceServicer):
-    def Get(self, request, context):
+    def __init__(self) -> None:
+        self.result = order_pb2.OrderMessageList()
+
         first_order = order_pb2.OrderMessage(
             id="2222",
             created_by="USER123",
@@ -23,10 +25,12 @@ class OrderServicer(order_pb2_grpc.OrderServiceServicer):
             created_at='2020-03-11',
             equipment=[order_pb2.OrderMessage.Equipment.MOUSE]
         )
+        self.result.orders.extend([first_order, second_order])
 
-        result = order_pb2.OrderMessageList()
-        result.orders.extend([first_order, second_order])
-        return result
+    def Get(self, request, context):
+
+        # print(result)
+        return self.result
 
     def Create(self, request, context):
         print("Received a message!")
@@ -36,11 +40,14 @@ class OrderServicer(order_pb2_grpc.OrderServiceServicer):
             "created_by": request.created_by,
             "status": request.status,
             "created_at": request.created_at,
-            "equipment": ["KEYBOARD"]
+            "equipment": request.equipment 
         }
         print(request_value)
 
-        return order_pb2.OrderMessage(**request_value)
+        order = order_pb2.OrderMessage(**request_value)
+
+        self.result.orders.extend([order])
+        return order 
 
 
 # Initialize gRPC server

@@ -17,8 +17,11 @@ order = order_pb2.OrderMessage(
     created_by="USER123",
     status=order_pb2.OrderMessage.Status.QUEUED,
     created_at='2020-03-12',
-    equipment=[order_pb2.OrderMessage.Equipment.KEYBOARD]
+    equipment=[order_pb2.OrderMessage.Equipment.KEYBOARD, order_pb2.OrderMessage.Equipment.MONITOR]
 )
 
 
-response = stub.Create(order)
+# response = stub.Create(order)
+response = stub.Get(order_pb2.Empty())
+print(response)
+

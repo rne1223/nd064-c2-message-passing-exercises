@@ -34,6 +34,7 @@ def neworder():
     created_at = datetime.fromtimestamp(int(data["created_at"])).isoformat() 
     equipment =  data["equipment"]
 
+    print(request.json)
 
     order = {
         "created_at": created_at,
