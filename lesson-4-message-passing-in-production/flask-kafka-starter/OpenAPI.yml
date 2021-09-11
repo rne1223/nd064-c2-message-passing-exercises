@@ -1,0 +1,68 @@
+openapi: '3.0.0'
+info:
+  description: Manage teh items in a stockroom
+  title: Simple Inventory API 
+  version: '1.0.0'
+paths:
+  /items/{itemId}:
+    get:
+      summary: Retrieve an item from teh inventory
+      operationId: getInventory
+      description: By passing in an item_id you can retrieve the tiems information
+      parameters:
+        - in: path
+          name: itemId
+          schema:
+            type: string
+          required: true
+          description: ID of the item to get
+      responses:
+        '200':
+          description: Successfully retrieved an item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem' 
+        '400':
+          description: Requested item ID was not found
+  /items:
+    post:
+      summary: Creates an item in the inventory
+      operationId: addItem
+      description: Adds an item to the Inventory
+      responses:
+        '201':
+          description: Item created
+        '400':
+          description: Invalid input, object invalid
+        '409':
+          description: An existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItem'
+        description: Inventory item to add
+components:
+  schemas:
+    InventoryItem:
+      type: object
+      required:
+        - id
+        - name
+        - brand_name
+        - weight
+      properties:
+        id:
+          type: string
+          example: 1
+        name:
+          type: string
+          example: Egg Pan
+        brand_name:
+          type: string
+          example: "Acme"
+        weight:
+          type: number
+          example: 2.1
+  
