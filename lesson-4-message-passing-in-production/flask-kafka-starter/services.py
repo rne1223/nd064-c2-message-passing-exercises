@@ -13,6 +13,7 @@ def create_order(order_data):
     # kafka_producer = g.kafka_producer
     # TODO: send the data using kafka_producer using .send()
     kafka_data = json.dumps(order_data).encode()
+    print(kafka_data)
     kafka_producer = g.kafka_producer
     kafka_producer.send("items", kafka_data)
 

@@ -30,7 +30,7 @@ def computers():
     elif request.method == 'POST':
         request_body = request.json
         result = create_order(request_body)
-        return Response(status=202)
+        return Response(response=result, status=202)
     else:
         raise Exception('Unsupported HTTP request type.')
 

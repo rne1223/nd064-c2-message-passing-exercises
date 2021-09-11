@@ -9,6 +9,7 @@ def create_order(order_data):
     """
     # Turn order_data into a binary string for Kafka
     kafka_data = json.dumps(order_data).encode()
+    print(kafka_data)
     # Kafka producer has already been set up in Flask context
     kafka_producer = g.kafka_producer
     kafka_producer.send("items", kafka_data)
